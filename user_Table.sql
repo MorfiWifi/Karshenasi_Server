@@ -8,22 +8,9 @@
     Kart_meli nvarchar(255) 
 );
 
-INSERT INTO dbo.Users
-        ( LastName ,
-          FirstName ,
-          pass ,
-          pass_hash ,
-          City
-        )
-VALUES  ( N'Ad' , -- LastName - nvarchar(255)
-          N'Morteza' , -- FirstName - nvarchar(255)
-          N'123456' , -- pass - nvarchar(255)
-          N'notYet' , -- pass_hash - nvarchar(255)
-          N'Ahwaz'  -- City - nvarchar(255)
-        )
 
 
-DROP TABLE Message ;
+DROP TABLE Properties ;
 
 CREATE TABLE Tags (
     ID integer PRIMARY KEY IDENTITY NOT NULL,
@@ -51,6 +38,69 @@ CREATE TABLE Properties (
 	Birth_Date NVARCHAR(255),
 	Adress NVARCHAR(255),
 	Roozane_Shabane NVARCHAR(255), -- as Swich
-	KartMeli NVARCHAR(255),
+	Kart_meli NVARCHAR(255),
 	Father_Name NVARCHAR(255),
 );
+
+INSERT INTO dbo.Users
+        ( Tip ,
+          LastName ,
+          FirstName ,
+          pass ,
+          pass_hash ,
+          Kart_meli
+        )
+VALUES  ( NULL , -- Tip - integer
+          N'' , -- LastName - nvarchar(255)
+          N'' , -- FirstName - nvarchar(255)
+          N'' , -- pass - nvarchar(255)
+          N'' , -- pass_hash - nvarchar(255)
+          N''  -- Kart_meli - nvarchar(255)
+        )
+
+
+INSERT INTO dbo.Tags
+        ( Tip, Matn )
+VALUES  ( NULL, -- Tip - integer
+          N''  -- Matn - nvarchar(255)
+          )
+
+INSERT INTO dbo.Message
+        ( Sender ,
+          Reciver ,
+          Reciver_Type ,
+          Tags ,
+          Matn ,
+          Send_Date ,
+          Read_Date ,
+          Readed
+        )
+VALUES  ( NULL , -- Sender - integer
+          NULL , -- Reciver - integer
+          NULL , -- Reciver_Type - integer
+          N'' , -- Tags - nvarchar(255)
+          N'' , -- Matn - nvarchar(255)
+          N'' , -- Send_Date - nvarchar(255)
+          N'' , -- Read_Date - nvarchar(255)
+          N''  -- Readed - nvarchar(255)
+        )
+
+INSERT INTO dbo.Properties
+        ( Std_ID ,
+          Post_ID ,
+          City ,
+          Birth_Date ,
+          Adress ,
+          Roozane_Shabane ,
+          Kart_meli ,
+          Father_Name
+        )
+VALUES  ( NULL , -- Std_ID - integer
+          N'' , -- Post_ID - nvarchar(255)
+          N'' , -- City - nvarchar(255)
+          N'' , -- Birth_Date - nvarchar(255)
+          N'' , -- Adress - nvarchar(255)
+          N'' , -- Roozane_Shabane - nvarchar(255)
+          N'' , -- Kart_meli - nvarchar(255)
+          N''  -- Father_Name - nvarchar(255)
+        )

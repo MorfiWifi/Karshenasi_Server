@@ -7,8 +7,15 @@ namespace karhsenasi_server2.Models
 {
     public class Tag
     {
-        string Id { set; get; }
-        int type { set; get; }
-        string Matn { set; get; }
+        public string Id { set; get; }
+        public int type { set; get; }
+        public string Matn { set; get; }
+
+        Tag()
+        {
+            Id = "10";
+            type = 0;
+            Matn = "";
+        }
     }
 }
