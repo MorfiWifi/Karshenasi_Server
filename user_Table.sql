@@ -23,7 +23,7 @@ VALUES  ( N'Ad' , -- LastName - nvarchar(255)
         )
 
 
-DROP TABLE Users ;
+DROP TABLE Message ;
 
 CREATE TABLE Tags (
     ID integer PRIMARY KEY IDENTITY NOT NULL,
@@ -35,6 +35,7 @@ CREATE TABLE Message (
     ID integer PRIMARY KEY IDENTITY NOT NULL,
 	Sender INTEGER ,
 	Reciver INTEGER ,
+	Reciver_Type INTEGER ,
     Tags nvarchar(255),
 	Matn NVARCHAR(255),
 	Send_Date NVARCHAR(255),
