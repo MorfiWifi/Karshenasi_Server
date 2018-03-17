@@ -9,6 +9,7 @@ namespace karhsenasi_server2.Models
 {
     public class Repo
     {
+        private static Repo  Rep;
        
         // Constants !!
         private string LIMIT = "100"; // limiting Number OF Retrived From Database !! _ For Foture Speed Enhance!
@@ -41,6 +42,13 @@ namespace karhsenasi_server2.Models
         public const string YES = "yes";
         public const string NO = "no";
 
+        public static Repo GetInstance() {
+            if (Rep == null)
+            {
+                Rep = new Repo();
+            }
+            return Rep;
+        }
 
         private static string BuildConnectionString(string dataSource, string userName, string userPassword)
         {
@@ -53,7 +61,7 @@ namespace karhsenasi_server2.Models
             return builder.ConnectionString;
         }
 
-        public RemoveUser() { }
+        public void RemoveUser() {}
         public List<User> Users() {
             List<User> users = new List<User>();
             try {
@@ -196,13 +204,13 @@ namespace karhsenasi_server2.Models
             return Faild;
 
         }
-        public string RemoveMessage() { }
-        public string AddTag() { }
-        public string RemoveTag() { }
+        public string RemoveMessage() { return NON; }
+        public string AddTag() { return NON; }
+        public string RemoveTag() { return NON; }
         public void Tags() { }
         public void Porperties() { }
-        public string AddProperties() { }
-        public string RemoveProperties() { }
+        public string AddProperties() { return NON; }
+        public string RemoveProperties() { return NON; }
 
 
 

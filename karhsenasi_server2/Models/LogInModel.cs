@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace karhsenasi_server2.Models
 {
-        public class LogInViewModel
+        public class LoginModel
         {
             [Display(Name = "نام کاربری")]
             public string UserName { get; set; }
