@@ -13,33 +13,33 @@ namespace karhsenasi_server2.Models
         // Constants !!
         private string LIMIT = "100"; // limiting Number OF Retrived From Database !! _ For Foture Speed Enhance!
         private string connect_str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Morfi\\Desktop\\Karshenasi_Server\\karhsenasi_server2\\App_Data\\DB.mdf;Integrated Security=True";
-        private static string FirstName = "FirstName";
-        private static string LastName = "LastName";
-        private static string Id = "ID";
-        private static string Tip = "Tip";
-        private static string pass = "pass";
-        private static string pass_hash = "pass_hash";
-        private static string Kart_meli = "Kart_meli";
-        private static string City = "City";
-        private static string Sender = "Sender";
-        private static string Reciver = "Reciver";
-        private static string Reciver_Type = "Reciver_Type";
-        private static string Tagss = "Tags";
-        private static string Matn = "Matn";
-        private static string Send_Date = "Send_Date";
-        private static string Read_Date = "Read_Date";
-        private static string Readed = "Readed";
-        private static string Std_ID = "Std_ID";
-        private static string Post_ID = "Post_ID";
-        private static string Birth_Date = "Birth_Date";
-        private static string Adress = "Adress";
-        private static string Roozane_Shabane = "Roozane_Shabane";
-        private static string Father_Name = "Father_Name";
-        public static string Faild = "fail";
-        public static string Sucsess = "sucses";
-        public static string NON = "non";
-        public static string YES = "yes";
-        public static string NO = "no";
+        private const string FirstName = "FirstName";
+        private const string LastName = "LastName";
+        private const string Id = "ID";
+        private const string Tip = "Tip";
+        private const string pass = "pass";
+        private const string pass_hash = "pass_hash";
+        private const string Kart_meli = "Kart_meli";
+        private const string City = "City";
+        private const string Sender = "Sender";
+        private const string Reciver = "Reciver";
+        private const string Reciver_Type = "Reciver_Type";
+        private const string Tagss = "Tags";
+        private const string Matn = "Matn";
+        private const string Send_Date = "Send_Date";
+        private const string Read_Date = "Read_Date";
+        private const string Readed = "Readed";
+        private const string Std_ID = "Std_ID";
+        private const string Post_ID = "Post_ID";
+        private const string Birth_Date = "Birth_Date";
+        private const string Adress = "Adress";
+        private const string Roozane_Shabane = "Roozane_Shabane";
+        private const string Father_Name = "Father_Name";
+        public const string Faild = "fail";
+        public const string Sucsess = "sucses";
+        public const string NON = "non";
+        public const string YES = "yes";
+        public const string NO = "no";
 
 
         private static string BuildConnectionString(string dataSource, string userName, string userPassword)
@@ -53,7 +53,7 @@ namespace karhsenasi_server2.Models
             return builder.ConnectionString;
         }
 
-        public RemoveUser() { };
+        public RemoveUser() { }
         public List<User> Users() {
             List<User> users = new List<User>();
             try {
@@ -161,7 +161,41 @@ namespace karhsenasi_server2.Models
             }
             return messages;
         }
-        public string AddMessage() { }
+        public string AddMessage(Message message) {
+            Values val = new Values();
+            // Be aware of Kind Type of !!
+            string red = NO;
+            if (message.Readed)
+            {
+                red = YES;
+            }
+            val.vals.Add(new ValObj (Sender , message.Sender_ID ,Values.integer ));
+            val.vals.Add(new ValObj(Reciver, message.Reciver_ID, Values.integer));
+            val.vals.Add(new ValObj(Send_Date, message.Send_Date, Values.nvarchar));
+            val.vals.Add(new ValObj(Readed, red , Values.nvarchar));
+            val.vals.Add(new ValObj(Matn, message.Matn, Values.nvarchar));
+            val.vals.Add(new ValObj(Reciver_Type, message.Reciver_Type.GetTypeCode().ToString(), Values.integer));
+            val.vals.Add(new ValObj(Read_Date, message.Recive_Date, Values.nvarchar));
+            val.vals.Add(new ValObj(Tagss, message.Tags, Values.nvarchar));
+
+            string query = val.GetQuery(Values.Insert, "Message");
+
+            try
+            {
+                SqlConnection con = new SqlConnection(connect_str);
+                con.Open();
+                SqlCommand Command = new SqlCommand(query, con);
+                int row = Command.ExecuteNonQuery();
+                con.Close();
+                return row.ToString();
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+            }
+            return Faild;
+
+        }
         public string RemoveMessage() { }
         public string AddTag() { }
         public string RemoveTag() { }

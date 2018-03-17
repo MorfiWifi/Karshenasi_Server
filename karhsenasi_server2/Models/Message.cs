@@ -17,7 +17,7 @@ namespace karhsenasi_server2.Models
         public bool Readed { set; get; }
         public kind Reciver_Type { set; get; }
 
-        Message()
+        public Message()
         {
             id = "0";
             Send_Date = "";
