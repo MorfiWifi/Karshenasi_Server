@@ -53,6 +53,11 @@ namespace karhsenasi_server2.Controllers.Api
             AuthenticationProperties properties = new AuthenticationProperties(dict);
             AuthenticationTicket authenticationTicket = new AuthenticationTicket(identity, properties);
             authenticationTicket.Properties.ExpiresUtc = DateTimeOffset.UtcNow.AddDays(1);
+
+            var p = Startup.OAuthOptions;
+            var mm = p.AccessTokenFormat;
+            
+            var tok = Startup.OAuthOptions.AccessTokenFormat.Protect(authenticationTicket);
             string MyToken = Startup.OAuthOptions.AccessTokenFormat.Protect(authenticationTicket);
             Debug.WriteLine("My OWN CRATED TOKEN : " + MyToken);
             //incomingCall.Message = MyToken;

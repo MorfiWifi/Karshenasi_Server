@@ -13,7 +13,7 @@ namespace karhsenasi_server2.Models
        
         // Constants !!
         private string LIMIT = "100"; // limiting Number OF Retrived From Database !! _ For Foture Speed Enhance!
-        private string connect_str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Morfi\\Desktop\\Karshenasi_Server\\karhsenasi_server2\\App_Data\\DB.mdf;Integrated Security=True";
+        private string connect_str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=I:\\karshenasi_Project\\Karshenasi_Server\\karhsenasi_server2\\App_Data\\Database1.mdf;Integrated Security=True";
         private const string FirstName = "FirstName";
         private const string LastName = "LastName";
         private const string Id = "ID";
