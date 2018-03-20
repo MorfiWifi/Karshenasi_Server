@@ -14,6 +14,17 @@ namespace karhsenasi_server2.Models
         // Constants !!
         private string LIMIT = "100"; // limiting Number OF Retrived From Database !! _ For Foture Speed Enhance!
         private string connect_str = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=I:\\karshenasi_Project\\Karshenasi_Server\\karhsenasi_server2\\App_Data\\Database1.mdf;Integrated Security=True";
+
+        internal object Users(string iD)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object Messages(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         private const string FirstName = "FirstName";
         private const string LastName = "LastName";
         private const string Id = "ID";
@@ -25,15 +36,38 @@ namespace karhsenasi_server2.Models
         private const string Sender = "Sender";
         private const string Reciver = "Reciver";
         private const string Reciver_Type = "Reciver_Type";
+
+        internal object RemoveUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         private const string Tagss = "Tags";
         private const string Matn = "Matn";
         private const string Send_Date = "Send_Date";
         private const string Read_Date = "Read_Date";
+
+        internal object RemoveMessage(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object UpdateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
         private const string Readed = "Readed";
         private const string Std_ID = "Std_ID";
         private const string Post_ID = "Post_ID";
         private const string Birth_Date = "Birth_Date";
         private const string Adress = "Adress";
+
+        internal object UpdateMessage(Message message)
+        {
+            throw new NotImplementedException();
+        }
+
         private const string Roozane_Shabane = "Roozane_Shabane";
         private const string Father_Name = "Father_Name";
         public const string Faild = "fail";
@@ -41,6 +75,7 @@ namespace karhsenasi_server2.Models
         public const string NON = "non";
         public const string YES = "yes";
         public const string NO = "no";
+        public const string OperationFaild = "OPE_FAILD_Check_THINGS";
 
         public static Repo GetInstance() {
             if (Rep == null)
