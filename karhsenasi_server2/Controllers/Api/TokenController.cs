@@ -64,6 +64,40 @@ namespace karhsenasi_server2.Controllers.Api
             return Ok(MyToken);
         }
 
+
+
+        public static User_Cheker CheckToken(string Token)
+        {
+            var ch = new User_Cheker();
+            try
+            {
+                AuthenticationTicket ticket = Startup.OAuthOptions.AccessTokenFormat.Unprotect(Token);
+                string UserName = ticket.Properties.Dictionary["USERNAME"];
+                string Pass = ticket.Properties.Dictionary["PASSWORD"];
+                if (ticket.Properties.ExpiresUtc < DateTimeOffset.UtcNow)
+                    return ch;
+                Debug.WriteLine("I GOT USERNAME : " + UserName);
+                Debug.WriteLine("I GOT PASS : " + Pass);
+                var users = Repo.GetInstance().Users().Where(x => x.FName == UserName);
+                users.Where(x => x.Pass == Pass);
+                //ApplicationUser user = db.Users.Where(x => x.UserName == UserName).First();
+                if (users != null )
+                {
+                    ch.user = users.First();
+                    ch.isTrue = true;
+                    return ch;
+                }
+            }
+            catch (Exception)
+            {
+                ch.isTrue = false;
+                return ch;
+            }
+            ch.isTrue = false;
+            return ch;
+        }
+
+
         [HttpGet]
         [ResponseType(typeof(string))]
         public IHttpActionResult Tokem()

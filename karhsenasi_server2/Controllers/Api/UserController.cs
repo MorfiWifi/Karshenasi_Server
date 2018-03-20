@@ -17,8 +17,12 @@ namespace karhsenasi_server2.Controllers.Api
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser()
         {
-            var req = Request; // Find out Whre is Token (I have Forgot !!)
-            // Find with Token !
+            var req = Request.Headers.Authorization.Scheme; // Find out Whre is Token (I have Forgot !!)
+            var ch = TokenController.CheckToken(req);
+            if (ch.isTrue == false)
+            {
+                return BadRequest("You Didnt Autherize (correctly)");
+            }
 
             User user = null; // Restored from Token!
             return Ok(user);
@@ -28,9 +32,12 @@ namespace karhsenasi_server2.Controllers.Api
         [ResponseType(typeof(User))]
         public IHttpActionResult InsertUser(User user)
         {
-            var req = Request; // Find out Whre is Token (I have Forgot !!) (Find User From Its Token!!!)
-            var sender = "User Gained From Token!";
-            // Enhance Message (for Real Sender 
+            var req = Request.Headers.Authorization.Scheme; // Find out Whre is Token (I have Forgot !!)
+            var ch = TokenController.CheckToken(req);
+            if (ch.isTrue == false)
+            {
+                return BadRequest("You Didnt Autherize (correctly)");
+            }
             var new_user = Db.AddUser(user);
             return Ok(new_user);
         }
@@ -39,8 +46,12 @@ namespace karhsenasi_server2.Controllers.Api
         [ResponseType(typeof(string))]
         public IHttpActionResult DeletUser(User user)
         {
-            var req = Request; // Find out Whre is Token (I have Forgot !!) (Find User From Its Token!!!)
-            //var sender = "User Gained From Token!";
+            var req = Request.Headers.Authorization.Scheme; // Find out Whre is Token (I have Forgot !!)
+            var ch = TokenController.CheckToken(req);
+            if (ch.isTrue == false)
+            {
+                return BadRequest("You Didnt Autherize (correctly)");
+            }
             var messages = Db.RemoveUser(user);
             return Ok(messages);
         }
@@ -49,9 +60,12 @@ namespace karhsenasi_server2.Controllers.Api
         [ResponseType(typeof(User))]
         public IHttpActionResult EditUser(User user)
         {
-            //Foture Addes !!
-            var req = Request; // Find out Whre is Token (I have Forgot !!) (Find User From Its Token!!!)
-            //var sender = "User Gained From Token!";
+            var req = Request.Headers.Authorization.Scheme; // Find out Whre is Token (I have Forgot !!)
+            var ch = TokenController.CheckToken(req);
+            if (ch.isTrue == false)
+            {
+                return BadRequest("You Didnt Autherize (correctly)");
+            }
             var new_user = Db.UpdateUser(user);
             return Ok(new_user);
         }
