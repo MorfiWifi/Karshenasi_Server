@@ -20,9 +20,17 @@ namespace karhsenasi_server2.Models
             throw new NotImplementedException();
         }
 
-        internal object Messages(User user)
+        internal List<Message> Messages(User user)
         {
-            throw new NotImplementedException();
+            // Query Proper Messages For THis user!
+            var messages = Messages();
+            var messages2 = messages.Where(x => x.Reciver_Type.Equals(user.Type));
+            List<Message> mess = new List<Message>();
+            for (int i = 0; i <messages2.Count(); i++)
+            {
+                mess.Add(messages2.ElementAt(i));
+            }
+            return mess;
         }
 
         private const string FirstName = "FirstName";
@@ -173,12 +181,12 @@ namespace karhsenasi_server2.Models
                 SqlDataReader reader = new SqlCommand("select * from Message", con).ExecuteReader();
                 if (reader.HasRows)
                 {
-                    Message m = new Message();
+                    
                     while (reader.Read())
                     {
+                        Message m = new Message();
                         m.Matn = reader[Matn].ToString();
                         m.Sender_ID = reader[Sender].ToString();
-                        m.Reciver_Type = (kind)Enum.Parse(typeof(kind), reader[Tip].ToString());
                         m.Reciver_ID = reader[Reciver].ToString();
                         m.Tags = reader[Tagss].ToString();
                         m.Send_Date = reader[Send_Date].ToString();
@@ -192,9 +200,12 @@ namespace karhsenasi_server2.Models
                         {
                             m.Readed = false;
                         }
-                        
+                        int nn = (int) reader[Reciver_Type];
+                        //int nn = int.Parse(tt);
+                        kind kk = (kind)nn;
+                        m.Reciver_Type = (kind)(reader[Reciver_Type]);
+                        messages.Add(m);
                     }
-                    messages.Add(m);
                 }
                 con.Close();
             }

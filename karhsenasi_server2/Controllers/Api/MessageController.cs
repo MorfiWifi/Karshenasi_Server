@@ -23,7 +23,7 @@ namespace karhsenasi_server2.Controllers.Api
             {
                 return BadRequest("You Didnt Autherize (correctly)");
             }
-            var messages = Db.Messages(ch.user);
+            List<Message> messages = Db.Messages(ch.user);
             return Ok(messages);
         }
 
@@ -61,7 +61,7 @@ namespace karhsenasi_server2.Controllers.Api
         public IHttpActionResult EditMessages(Message message)
         {
             var req = Request.Headers.Authorization.Scheme; // Find out Whre is Token (I have Forgot !!)
-            var ch = TokenController.CheckToken(req);
+            var ch =  TokenController.CheckToken(req);
             if (ch.isTrue == false)
             {
                 return BadRequest("You Didnt Autherize (correctly)");
