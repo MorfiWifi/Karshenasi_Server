@@ -17,6 +17,11 @@ namespace karhsenasi_server2.Models
         public bool Readed { set; get; }
         public kind Reciver_Type { set; get; }
 
+        public static string Current_Date()
+        {
+            return DateTime.Now.ToString("yyyy:MM:dd:hh:mm:ss");
+        }
+
         public Message()
         {
             id = "0";
